@@ -1,0 +1,18 @@
+from langchain_openai import OpenAI
+from langchain_core.prompts import PromptTemplate
+
+
+llm = OpenAI(model_name="gpt-3.5-turbo", temperature=0.7)
+
+prompt = PromptTemplate(
+  input_variables = ["topic"],
+  template = "Suggest a catchy blog title about {topic}"
+)
+
+topic = input("Enter a topic")
+
+formatted_prompt = prompt.format(topic=topic)
+
+blog_title = llm.predict(formatted_prompt)
+
+print("Generated Blog Title:", blog_title)
